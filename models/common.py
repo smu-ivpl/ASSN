@@ -103,9 +103,9 @@ class Squeeze(nn.Module):
 # sequence feature
 class Conv3D(nn.Module):
     # create sequence feature
-    def __init__(self, in_c=256, out_c=256):
+    def __init__(self, in_c=256, out_c=256, k=1, s=1):
         super(Conv3D, self).__init__()
-        self.conv3d = nn.Conv3d(in_c, out_c, kernel_size=(3, 3, 3), stride=(1, 1, 1), padding=1)
+        self.conv3d = nn.Conv3d(in_c, out_c, kernel_size=(k, k, k), stride=(s, s, s), padding=k // 2)
         self.batch3d = nn.BatchNorm3d(out_c, eps=0.001)
         self.act = nn.SiLU()
         self.avgpool3d = nn.AdaptiveAvgPool3d((1, None, None))
@@ -113,12 +113,12 @@ class Conv3D(nn.Module):
 
 
     def forward(self, x):
-        x = self.conv3d(x)
-        x = self.batch3d(x)
-        x = self.act(x)
-        x = self.avgpool3d(x)
+        y = self.conv3d(x)
+        y = self.batch3d(y)
+        y = self.act(y)
+        y = self.avgpool3d(y)
         # x = x.squeeze(2)
-        return x
+        return y
 
 class Flatten(nn.Module):
     # Use after nn.AdaptiveAvgPool2d(1) to remove last 2 dimensions
