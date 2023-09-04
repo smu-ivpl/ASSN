@@ -157,20 +157,18 @@ head:
    [ 120, 1, nn.Upsample, [ None, 4, 'nearest' ] ],  # 122, p5 resize
 
    [ 121, 1, Conv, [320, 3, 1] ],                  # 123, p4 c 640 -> 320
-#   [ [-1, 118], 1, Shortcut, [1] ],
-   [ 122, 1, Conv, [320, 3, 1] ],                  # 125, p5 c 1280 -> 320
-#   [ [-1, 118], 1, Shortcut, [1] ],
+   [ 122, 1, Conv, [320, 3, 1] ],                  # 124, p5 c 1280 -> 320
 
    # unsqueeze depth dimension for 3d convolution
-   [118, 1, Unsqueeze, [2]],  # 127
-   [123, 1, Unsqueeze, [2]],  # 128
-   [125, 1, Unsqueeze, [2]],  # 129
+   [118, 1, Unsqueeze, [2]],  # 125
+   [123, 1, Unsqueeze, [2]],  # 126
+   [124, 1, Unsqueeze, [2]],  # 127
    
    # general view
-   [ [ -1, -2, -3 ], 1, Concat, [2] ],  # 130, concatenation
+   [ [ -1, -2, -3 ], 1, Concat, [2] ],  # 128, concatenation
    
    # scale sequence (s2) feature
-   [ -1, 1, Conv3D, [ 320, 64, 1, 1 ] ], # 131
+   [ -1, 1, Conv3D, [ 320, 64, 1, 1 ] ], # 129
    [ -2, 1, Conv3D, [ 320, 64, 1, 1 ] ],
    [ -1, 1, Conv3D, [ 64, 64, 3, 1 ] ],
    [ -1, 1, Conv3D, [ 64, 64, 3, 1 ] ],
@@ -183,8 +181,7 @@ head:
    [ -1, 1, Squeeze, [2]],
 
    # concatenate s2 and P3
-   [[-1, 118], 1, Concat, [1]], # 142, concatenation
-#   [ [-1, 118], 1, Shortcut, [1] ],
+   [[-1, 118], 1, Concat, [1]], # 140, concatenation
    # <<< scale sequence (s2) feature --------------------------------------------
 
    [[-1,119,120], 1, IDetect, [nc, anchors]],   # Detect(P3, P4, P5)
