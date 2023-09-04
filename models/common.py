@@ -134,7 +134,7 @@ class ChannelAttention(nn.Module):
         self.max_pool = nn.AdaptiveMaxPool2d(1)
 
         self.fc = nn.Sequential(nn.Conv2d(in_planes, in_planes // ratio, 1, bias=False),
-                                nn.ReLU(),
+                                nn.SiLU(),
                                 nn.Conv2d(in_planes // ratio, in_planes, 1, bias=False))
         self.sigmoid = nn.Sigmoid()
 
@@ -158,6 +158,22 @@ class SpatialAttention(nn.Module):
         x = torch.cat([avg_out, max_out], dim=1)
         x = self.conv1(x)
         return self.sigmoid(x)
+
+
+class ApplyAttention(nn.Module):
+    def __init__(self, num_feat):
+        super(ApplyAttention, self).__init__()
+        self.conv = nn.Conv2d(num_feat, num_feat, kernel_size=3, padding=1, bias=True)
+        # self.catt = ChannelAttention(num_feat)
+        # self.satt = SpatialAttention()
+
+
+    def forward(self, x):
+        y = self.conv(x[0])
+        y1 = y * x[1]
+        y2 = y * x[2]
+
+        return y1 + y2
 
 
 class RBAM(nn.Module):
