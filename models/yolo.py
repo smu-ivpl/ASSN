@@ -779,7 +779,7 @@ def parse_model(d, ch):  # model_dict, input_channels(3)
                      BottleneckCSP, BottleneckCSP2, SPPCSP]:
                 args.insert(2, n)  # number of repeats
                 n = 1
-        elif m is Conv3D:
+        elif m in [ Conv3D, Conv3DNP ]:
             c2 = 320
         elif m is nn.BatchNorm2d:
             args = [ch[f]]
