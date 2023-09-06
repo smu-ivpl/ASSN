@@ -168,7 +168,7 @@ head:
    [[125,126,127], 1, Concat, [2]],  # 128, concatenation
    
    # scale sequence (s2) feature
-   [-1, 1, Conv3D, [320, 320]],  # 129
+   [ -1, 1, Conv3D, [ 320, 320, 3, 1 ] ],  # 129
    [ -1, 1, Squeeze, [2]],
    
    # concatenate s2 and P3
