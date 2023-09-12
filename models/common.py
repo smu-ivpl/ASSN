@@ -108,12 +108,14 @@ class Conv3D(nn.Module):
         self.conv3d = nn.Conv3d(in_c, out_c, kernel_size=(k, k, k), stride=(s, s, s), padding=k // 2)
         self.batch3d = nn.BatchNorm3d(out_c, eps=0.001)
         self.act = nn.SiLU()
+        # self.leakyRelu = nn.LeakyReLU()
         self.avgpool3d = nn.AdaptiveAvgPool3d((1, None, None))
 
     def forward(self, x):
         y = self.conv3d(x)
         y = self.batch3d(y)
         y = self.act(y)
+        # y =  self.leakyRelu(y)
         y = self.avgpool3d(y)
         y = y.squeeze(2)
         return y
