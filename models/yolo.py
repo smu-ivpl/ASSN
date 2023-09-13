@@ -780,7 +780,7 @@ def parse_model(d, ch):  # model_dict, input_channels(3)
                 args.insert(2, n)  # number of repeats
                 n = 1
         elif m in [ Conv3D, Conv3DNP ]:
-            c2 = 320
+            c2 = args[1]
         elif m is nn.BatchNorm2d:
             args = [ch[f]]
         elif m is Concat:
