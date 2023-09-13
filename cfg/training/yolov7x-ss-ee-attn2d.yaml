@@ -163,7 +163,7 @@ head:
    [ 118, 1, SpatialAttention, [ 7 ] ],                 # 125
    [ 118, 1, ChannelAttention, [320] ],                 # 126
    [ [ 118, 125, 126 ], 1, ApplyAttention, [ 320 ] ],   # 127, p3 with attention
-   [ [ 122, 125, 126 ], 1, ApplyAttention, [ 320 ] ],   # 128, p4 with attention
+   [ [ 123, 125, 126 ], 1, ApplyAttention, [ 320 ] ],   # 128, p4 with attention
    [ [ 124, 125, 126 ], 1, ApplyAttention, [ 320 ] ],   # 129, p5 with attention
 
    # general view
