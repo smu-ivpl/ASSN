@@ -153,11 +153,11 @@ head:
    [117, 1, Conv, [1280, 3, 1]],  # 120
    
    # scale sequence (s2) feature >>> --------------------------------------------
-   [ 119, 1, Conv, [ 320, 1, 1 ] ],   # 121, p4 [640] ==> [320]
-   [  -1, 1, nn.Upsample, [ None, 2, 'nearest' ] ],  # 122, p4 resize
+   [ 119, 1, Conv, [ 320, 1, 1 ]],   # 121, p4 [640] ==> [320]
+   [ 120, 1, Conv, [ 320, 1, 1 ]],   # 122, p5 [1280] ==> [320]
 
-   [ 120, 1, Conv, [ 320, 1, 1 ] ],   # 123, p5 [1280] ==> [320]
-   [  -1, 1, nn.Upsample, [ None, 4, 'nearest' ] ],  # 124, p5 resize
+   [121, 1, nn.Upsample, [ None, 2, 'nearest' ]],  # 123, p4 resize
+   [122, 1, nn.Upsample, [ None, 4, 'nearest' ]],  # 124, p5 resize
 
    # attention with P3
    [ 118, 1, SpatialAttention, [ 7 ] ],                 # 125
@@ -167,16 +167,7 @@ head:
    [ [ 124, 125, 126 ], 1, ApplyAttention, [ 320 ] ],   # 129, p5 with attention
 
    # general view
-   [ [ 127, 128, 129 ], 1, Concat, [ 1 ] ],  # 130, concatenation
-
-   # scale sequence (s2) feature
-   [ -1, 1, Conv, [ 320, 1, 1 ] ],
-   [ -2, 1, Conv, [ 320, 1, 1 ] ],
-   [ -1, 1, Conv, [ 320, 3, 1 ] ],
-   [ -1, 1, Conv, [ 320, 3, 1 ] ],
-   [ -1, 1, Conv, [ 320, 3, 1 ] ],
-   [ -1, 1, Conv, [ 320, 3, 1 ] ],
-   [ [ -1, -2, -3, -4, -5, -6 ], 1, Concat, [ 1 ] ],
+   [[ -1, -2, -3 ], 1, Concat, [ 1 ]],  # 130, concatenation
    [ -1, 1, Conv, [ 320, 1, 1 ] ],
 
    # concatenate s2 and P3
