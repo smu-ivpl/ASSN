@@ -153,48 +153,35 @@ head:
    [117, 1, Conv, [1280, 3, 1]],  # 120
    
    # scale sequence (s2) feature >>> --------------------------------------------
-   [ 119, 1, Conv, [ 128, 1, 1 ] ],
-   [ 119, 1, Conv, [ 128, 1, 1 ] ],
-   [  -1, 1, Conv, [ 128, 3, 1 ] ],
-   [  -1, 1, Conv, [ 128, 3, 1 ] ],
-   [  -1, 1, Conv, [ 128, 3, 1 ] ],
-   [  -1, 1, Conv, [ 128, 3, 1 ] ],
-   [ [ -1, -2, -3, -4, -5, -6 ], 1, Concat, [ 1 ] ],
-   [  -1, 1, Conv, [ 320, 1, 1 ] ],   # 128
-   [  -1, 1, nn.Upsample, [ None, 2, 'nearest' ] ],  # 129, p4 resize
+   [ 119, 1, Conv, [ 320, 1, 1 ] ],   # 121, p4 [640] ==> [320]
+   [  -1, 1, nn.Upsample, [ None, 2, 'nearest' ] ],  # 122, p4 resize
 
-   [ 120, 1, Conv, [ 256, 1, 1 ] ],
-   [ 120, 1, Conv, [ 256, 1, 1 ] ],
-   [  -1, 1, Conv, [ 256, 3, 1 ] ],
-   [  -1, 1, Conv, [ 256, 3, 1 ] ],
-   [  -1, 1, Conv, [ 256, 3, 1 ] ],
-   [  -1, 1, Conv, [ 256, 3, 1 ] ],
-   [ [ -1, -2, -3, -4, -5, -6 ], 1, Concat, [ 1 ] ],
-   [  -1, 1, Conv, [ 320, 1, 1 ] ],   # 137
-   [  -1, 1, nn.Upsample, [ None, 4, 'nearest' ] ],  # 138, p5 resize
+   [ 120, 1, Conv, [ 320, 1, 1 ] ],   # 123, p5 [1280] ==> [320]
+   [  -1, 1, nn.Upsample, [ None, 4, 'nearest' ] ],  # 124, p5 resize
 
    # attention with P3
-   [ 118, 1, SpatialAttention, [ 7 ] ],                 # 139
-   [ 118, 1, ChannelAttention, [320] ],                 # 140
-   [ [ 129, 139, 140 ], 1, ApplyAttention, [ 320 ] ],   # 141, p4 with attention
-   [ [ 138, 139, 140 ], 1, ApplyAttention, [ 320 ] ],   # 142, p5 with attention
+   [ 118, 1, SpatialAttention, [ 7 ] ],                 # 125
+   [ 118, 1, ChannelAttention, [320] ],                 # 126
+   [ [ 118, 125, 126 ], 1, ApplyAttention, [ 320 ] ],   # 127, p3 with attention
+   [ [ 122, 125, 126 ], 1, ApplyAttention, [ 320 ] ],   # 128, p4 with attention
+   [ [ 124, 125, 126 ], 1, ApplyAttention, [ 320 ] ],   # 129, p5 with attention
 
    # general view
-   [ [ 118, 141, 142 ], 1, Concat, [ 1 ] ],  # 143, concatenation
+   [ [ 127, 128, 129 ], 1, Concat, [ 1 ] ],  # 130, concatenation
 
    # scale sequence (s2) feature
-   [ -1, 1, Conv, [ 160, 1, 1 ] ],
-   [ -2, 1, Conv, [ 160, 1, 1 ] ],
-   [ -1, 1, Conv, [ 160, 3, 1 ] ],
-   [ -1, 1, Conv, [ 160, 3, 1 ] ],
-   [ -1, 1, Conv, [ 160, 3, 1 ] ],
-   [ -1, 1, Conv, [ 160, 3, 1 ] ],
+   [ -1, 1, Conv, [ 320, 1, 1 ] ],
+   [ -2, 1, Conv, [ 320, 1, 1 ] ],
+   [ -1, 1, Conv, [ 320, 3, 1 ] ],
+   [ -1, 1, Conv, [ 320, 3, 1 ] ],
+   [ -1, 1, Conv, [ 320, 3, 1 ] ],
+   [ -1, 1, Conv, [ 320, 3, 1 ] ],
    [ [ -1, -2, -3, -4, -5, -6 ], 1, Concat, [ 1 ] ],
    [ -1, 1, Conv, [ 320, 1, 1 ] ],
 
    # concatenate s2 and P3
-   [[-1, 118], 1, Concat, [1]], # 156, concatenation
+   [ [ -1, 118 ], 1, Concat, [1]], # 139, concatenation
    # <<< scale sequence (s2) feature --------------------------------------------
 
-   [[-1,119,120], 1, IDetect, [nc, anchors]],   # Detect(P3, P4, P5)
+   [ [ -1, 119, 120 ], 1, IDetect, [nc, anchors]],   # Detect(P3, P4, P5)
   ]
