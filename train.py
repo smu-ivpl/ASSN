@@ -2,7 +2,7 @@ import argparse
 import logging
 import math
 import os
-os.environ["OMP_NUM_THREADS"] = 8
+os.environ["OMP_NUM_THREADS"]='8'
 import random
 import time
 from copy import deepcopy
