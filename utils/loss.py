@@ -740,6 +740,7 @@ class ComputeLossOTA:
             )
 
             matching_matrix = torch.zeros_like(cost, device=device)
+            # matching_matrix = torch.zeros_like(cost, device="cpu")
 
             for gt_idx in range(num_gt):
                 _, pos_idx = torch.topk(
@@ -1384,7 +1385,8 @@ class ComputeLossAuxOTA:
                 + 3.0 * pair_wise_iou_loss
             )
 
-            matching_matrix = torch.zeros_like(cost)
+            # matching_matrix = torch.zeros_like(cost)
+            matching_matrix = torch.zeros_like(cost, device="cpu")
 
             for gt_idx in range(num_gt):
                 _, pos_idx = torch.topk(
@@ -1438,7 +1440,7 @@ class ComputeLossAuxOTA:
         return matching_bs, matching_as, matching_gjs, matching_gis, matching_targets, matching_anchs
 
     def build_targets2(self, p, targets, imgs):
-        
+
         indices, anch = self.find_5_positive(p, targets)
 
         matching_bs = [[] for pp in p]
@@ -1537,7 +1539,8 @@ class ComputeLossAuxOTA:
                 + 3.0 * pair_wise_iou_loss
             )
 
-            matching_matrix = torch.zeros_like(cost)
+            # matching_matrix = torch.zeros_like(cost)
+            matching_matrix = torch.zeros_like(cost, device="cpu")
 
             for gt_idx in range(num_gt):
                 _, pos_idx = torch.topk(
