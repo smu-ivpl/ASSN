@@ -160,35 +160,35 @@ head:
    [47, 1, Conv, [1280, 3, 1]],
 
     # scale sequence (s2) feature >>> --------------------------------------------
-   [ 119, 1, Conv, [ 320, 1, 1 ] ],   # 122, p4 [640] ==> [320]
-   [ 120, 1, Conv, [ 320, 1, 1 ] ],   # 123, p5 [960] ==> [320]
-   [ 121, 1, Conv, [ 320, 1, 1 ] ],   # 124, p6 [1280] ==> [320]
+   [ 115, 1, Conv, [ 256, 1, 1 ] ],   # p4 [512] ==> [256], 122
+   [ 116, 1, Conv, [ 256, 1, 1 ] ],   # p5 [768] ==> [256]
+   [ 117, 1, Conv, [ 256, 1, 1 ] ],   # p6 [1024] ==> [256]
 
-   [ -3, 1, nn.Upsample, [ None, 2, 'nearest' ] ],  # 125, p4 resize
-   [ -3, 1, nn.Upsample, [ None, 4, 'nearest' ] ],  # 126, p5 resize
-   [ -3, 1, nn.Upsample, [ None, 8, 'nearest' ] ],  # 127, p6 resize
+   [ -3, 1, nn.Upsample, [ None, 2, 'nearest' ] ],  # p4 resize 2x, 125
+   [ -3, 1, nn.Upsample, [ None, 4, 'nearest' ] ],  # p5 resize 4x
+   [ -3, 1, nn.Upsample, [ None, 8, 'nearest' ] ],  # p6 resize 8x
 
-    # attention with P3
-   [ 118, 1, CBAM, [ 320 ] ],           # 128
-   [ [ 118, 128 ], 1, AttnMap, [ ] ],   # apply attention to p3
+    # P3 attention mapping
+   [ 114, 1, CBAM, [ 256 ] ],           # create attention map, 128
+   [ [ 114, 128 ], 1, AttnMap, [ ] ],   # apply attention to p3
    [ [ 125, 128 ], 1, AttnMap, [ ] ],   # apply attention to p4
    [ [ 126, 128 ], 1, AttnMap, [ ] ],   # apply attention to p5
    [ [ 127, 128 ], 1, AttnMap, [ ] ],   # apply attention to p6
 
-    # general view
-   [ [ -1, -2, -3 ], 1, Concat, [ 1 ] ],  # 133
-   [ -1, 1, Conv, [ 320, 1, 1 ] ],
-   [ -2, 1, Conv, [ 320, 1, 1 ] ],
-   [ -1, 1, Conv, [ 160, 3, 1 ] ],
-   [ -1, 1, Conv, [ 160, 3, 1 ] ],
-   [ -1, 1, Conv, [ 160, 3, 1 ] ],
-   [ -1, 1, Conv, [ 160, 3, 1 ] ],
+    # address general view with E-ELAN
+   [ [ -1, -2, -3, -4 ], 1, Concat, [ 1 ] ],  # 133
+   [ -1, 1, Conv, [ 256, 1, 1 ] ],
+   [ -2, 1, Conv, [ 256, 1, 1 ] ],
+   [ -1, 1, Conv, [ 128, 3, 1 ] ],
+   [ -1, 1, Conv, [ 128, 3, 1 ] ],
+   [ -1, 1, Conv, [ 128, 3, 1 ] ],
+   [ -1, 1, Conv, [ 128, 3, 1 ] ],
    [ [ -1, -2, -3, -4, -5, -6 ], 1, Concat, [ 1 ] ],
-   [ -1, 1, Conv, [ 320, 1, 1 ] ], # 141
+   [ -1, 1, Conv, [ 256, 1, 1 ] ], # 137
 
     # concatenate s2 and P3
-   [ [ -1, 118 ], 1, Concat, [ 1 ] ], # 142, concatenation
+   [ [ -1, 114 ], 1, Concat, [ 1 ] ],
     # <<< scale sequence (s2) feature --------------------------------------------
 
-   [[114,115,116,117,-1,119,120,121], 1, IAuxDetect, [nc, anchors]],   # Detect(P3, P4, P5, P6)
+   [[ -1, 115, 116, 117, 118, 119, 120, 121 ], 1, IAuxDetect, [nc, anchors]],   # Detect(P3, P4, P5, P6)
   ]

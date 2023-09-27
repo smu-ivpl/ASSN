@@ -154,5 +154,36 @@ head:
    [103, 1, Conv, [768, 3, 1]],
    [113, 1, Conv, [1024, 3, 1]],
 
-   [[114,115,116,117], 1, Detect, [nc, anchors]],   # Detect(P3, P4, P5, P6)
+    # scale sequence (s2) feature >>> --------------------------------------------
+    [ 115, 1, Conv, [ 256, 1, 1 ] ],   # p4 [512] ==> [256], 118
+    [ 116, 1, Conv, [ 256, 1, 1 ] ],   # p5 [768] ==> [256]
+    [ 117, 1, Conv, [ 256, 1, 1 ] ],   # p6 [1024] ==> [256]
+
+    [ -3, 1, nn.Upsample, [ None, 2, 'nearest' ] ],  # p4 resize 2x, 121
+    [ -3, 1, nn.Upsample, [ None, 4, 'nearest' ] ],  # p5 resize 4x
+    [ -3, 1, nn.Upsample, [ None, 8, 'nearest' ] ],  # p6 resize 8x
+
+    # P3 attention mapping
+    [ 114, 1, CBAM, [ 256 ] ],           # 124
+    [ [ 114, 124 ], 1, AttnMap, [ ] ],   # apply attention to p3
+    [ [ 121, 124 ], 1, AttnMap, [ ] ],   # apply attention to p4
+    [ [ 122, 124 ], 1, AttnMap, [ ] ],   # apply attention to p5
+    [ [ 123, 124 ], 1, AttnMap, [ ] ],   # apply attention to p6
+
+    # address general view with E-ELAN
+    [ [ -1, -2, -3, -4 ], 1, Concat, [ 1 ] ],  # 129
+    [ -1, 1, Conv, [ 256, 1, 1 ] ],
+    [ -2, 1, Conv, [ 256, 1, 1 ] ],
+    [ -1, 1, Conv, [ 128, 3, 1 ] ],
+    [ -1, 1, Conv, [ 128, 3, 1 ] ],
+    [ -1, 1, Conv, [ 128, 3, 1 ] ],
+    [ -1, 1, Conv, [ 128, 3, 1 ] ],
+    [ [ -1, -2, -3, -4, -5, -6 ], 1, Concat, [ 1 ] ],
+    [ -1, 1, Conv, [ 256, 1, 1 ] ], # 137
+
+    # concatenate s2 and P3
+    [ [ -1, 114 ], 1, Concat, [ 1 ] ],
+    # <<< scale sequence (s2) feature --------------------------------------------
+
+   [[ -1, 115, 116, 117 ], 1, Detect, [nc, anchors]],   # Detect(P3, P4, P5, P6)
   ]

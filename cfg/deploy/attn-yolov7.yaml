@@ -136,5 +136,33 @@ head:
    [88, 1, RepConv, [512, 3, 1]],
    [101, 1, RepConv, [1024, 3, 1]],
 
-   [[102,103,104], 1, Detect, [nc, anchors]],   # Detect(P3, P4, P5)
+    # scale sequence (s2) feature >>> --------------------------------------------
+    [ 103, 1, Conv, [ 256, 1, 1 ] ],   # 105, p4 [512] ==> [256]
+    [ 104, 1, Conv, [ 256, 1, 1 ] ],   # 106, p5 [1024] ==> [256]
+
+    [ -2, 1, nn.Upsample, [ None, 2, 'nearest' ] ],  # 107, p4 resize
+    [ -2, 1, nn.Upsample, [ None, 4, 'nearest' ] ],  # 108, p5 resize
+
+    # attention with P3
+    [ 102, 1, CBAM, [ 256 ] ],               # 109
+    [ [ 102, 109 ], 1, AttnMap, [ ] ],   # apply attention to p3
+    [ [ 107, 109 ], 1, AttnMap, [ ] ],   # apply attention to p4
+    [ [ 108, 109 ], 1, AttnMap, [ ] ],   # apply attention to p5
+
+    # general view
+    [ [ -1, -2, -3 ], 1, Concat, [ 1 ] ],
+    [ -1, 1, Conv, [ 256, 1, 1 ] ],
+    [ -2, 1, Conv, [ 256, 1, 1 ] ],
+    [ -1, 1, Conv, [ 128, 3, 1 ] ],
+    [ -1, 1, Conv, [ 128, 3, 1 ] ],
+    [ -1, 1, Conv, [ 128, 3, 1 ] ],
+    [ -1, 1, Conv, [ 128, 3, 1 ] ],
+    [ [ -1, -2, -3, -4, -5, -6 ], 1, Concat, [ 1 ] ],
+    [ -1, 1, Conv, [ 256, 1, 1 ] ], # 137
+
+    # concatenate s2 and P3
+    [ [ -1, 102 ], 1, Concat, [ 1 ] ], # 138, concatenation
+    # <<< scale sequence (s2) feature --------------------------------------------
+
+   [[ -1, 103, 104 ], 1, Detect, [nc, anchors]],   # Detect(P3, P4, P5)
   ]
