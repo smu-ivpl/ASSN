@@ -169,14 +169,14 @@ head:
    [ -3, 1, nn.Upsample, [ None, 8, 'nearest' ] ],  # p6 resize 8x
 
     # P3 attention mapping
-   [ 114, 1, CBAM, [ 256 ] ],           # create attention map, 128
-   [ [ 114, 128 ], 1, AttnMap, [ ] ],   # apply attention to p3
-   [ [ 125, 128 ], 1, AttnMap, [ ] ],   # apply attention to p4
-   [ [ 126, 128 ], 1, AttnMap, [ ] ],   # apply attention to p5
-   [ [ 127, 128 ], 1, AttnMap, [ ] ],   # apply attention to p6
+   [ [114, 125, 126, 127], 1, CBAM, [ 256 ] ],           # create attention map, 128
+#   [ [ 114, 128 ], 1, AttnMap, [ ] ],   # apply attention to p3
+#   [ [ 125, 128 ], 1, AttnMap, [ ] ],   # apply attention to p4
+#   [ [ 126, 128 ], 1, AttnMap, [ ] ],   # apply attention to p5
+#   [ [ 127, 128 ], 1, AttnMap, [ ] ],   # apply attention to p6
 
     # address general view with E-ELAN
-   [ [ -1, -2, -3, -4 ], 1, Concat, [ 1 ] ],  # 133
+#   [ [ -1, -2, -3, -4 ], 1, Concat, [ 1 ] ],  # 133
    [ -1, 1, Conv, [ 256, 1, 1 ] ],
    [ -2, 1, Conv, [ 256, 1, 1 ] ],
    [ -1, 1, Conv, [ 128, 3, 1 ] ],
