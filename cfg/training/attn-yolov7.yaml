@@ -144,13 +144,13 @@ head:
     [ -2, 1, nn.Upsample, [ None, 4, 'nearest' ] ],  # 108, p5 resize
 
     # attention with P3
-    [ 102, 1, CBAM, [ 256 ] ],               # 109
-    [ [ 102, 109 ], 1, AttnMap, [ ] ],   # apply attention to p3
-    [ [ 107, 109 ], 1, AttnMap, [ ] ],   # apply attention to p4
-    [ [ 108, 109 ], 1, AttnMap, [ ] ],   # apply attention to p5
+    [ [102, 107, 108], 1, CBAM, [ 256 ] ],               # 109
+#    [ [ 102, 109 ], 1, AttnMap, [ ] ],   # apply attention to p3
+#    [ [ 107, 109 ], 1, AttnMap, [ ] ],   # apply attention to p4
+#    [ [ 108, 109 ], 1, AttnMap, [ ] ],   # apply attention to p5
 
     # general view
-    [ [ -1, -2, -3 ], 1, Concat, [ 1 ] ],
+#    [ [ -1, -2, -3 ], 1, Concat, [ 1 ] ],
     [ -1, 1, Conv, [ 256, 1, 1 ] ],
     [ -2, 1, Conv, [ 256, 1, 1 ] ],
     [ -1, 1, Conv, [ 128, 3, 1 ] ],

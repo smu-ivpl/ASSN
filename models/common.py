@@ -157,55 +157,58 @@ class ChannelGate(nn.Module):
         self.mlp = nn.Sequential(
             Flatten(),
             nn.Linear(gate_channels, gate_channels // reduction_ratio),
-            # nn.ReLU(),
             nn.SiLU(),
             nn.Linear(gate_channels // reduction_ratio, gate_channels)
             )
         self.avg_pool = nn.AdaptiveAvgPool2d(1)
         self.max_pool = nn.AdaptiveMaxPool2d(1)
+        self.sigmoid = nn.Sigmoid()
 
     def forward(self, x):
         avg_pool = self.avg_pool(x)
         channel_att_sum = self.mlp(avg_pool)
         max_pool = self.max_pool(x)
         channel_att_sum += self.mlp(max_pool)
-        scale = torch.sigmoid(channel_att_sum).unsqueeze(2).unsqueeze(3).expand_as(x)
+        # scale = torch.sigmoid(channel_att_sum).unsqueeze(2).unsqueeze(3).expand_as(x)
+        scale = self.sigmoid(channel_att_sum).unsqueeze(2).unsqueeze(3).expand_as(x)
         return x * scale
-
-
-class ChannelPool(nn.Module):
-    def forward(self, x):
-        return torch.cat( (torch.max(x,1)[0].unsqueeze(1), torch.mean(x,1).unsqueeze(1)), dim=1 )
 
 
 class SpatialGate(nn.Module):
     def __init__(self):
         super(SpatialGate, self).__init__()
         kernel_size = 7
-        self.compress = ChannelPool()
+        # self.compress = ChannelPool()
         self.spatial = Conv(2, 1, k=kernel_size, p=(kernel_size-1) // 2, g=1, act=False)
+        self.sigmoid = nn.Sigmoid()
 
     def forward(self, x):
-        x_compress = self.compress(x)
+        # x_compress = self.compress(x)
+        # x_compress = torch.cat( (torch.max(x, 1)[0].unsqueeze(1),
+        #                          torch.mean(x, 1).unsqueeze(1)), dim=1 )
+        avg_out = torch.mean(x, dim=1, keepdim=True)
+        max_out, _ = torch.max(x, dim=1, keepdim=True)
+        x_compress = torch.cat([max_out, avg_out], dim=1)
         x_out = self.spatial(x_compress)
-        scale = torch.sigmoid(x_out) # broadcasting
+        scale = self.sigmoid(x_out) # broadcasting
         # return x * scale
         return scale
 
 
 class CBAM(nn.Module):
-    def __init__(self, gate_channels, reduction_ratio=16, no_spatial=False):
+    def __init__(self, gate_channels, reduction_ratio=16):
         super(CBAM, self).__init__()
         self.ChannelGate = ChannelGate(gate_channels, reduction_ratio)
-        self.no_spatial = no_spatial
-        if not no_spatial:
-            self.SpatialGate = SpatialGate()
+        self.SpatialGate = SpatialGate()
 
     def forward(self, x):
-        x_out = self.ChannelGate(x)
-        if not self.no_spatial:
-            x_out = self.SpatialGate(x_out)
-        return x_out
+        p3_attn_map = self.ChannelGate(x[0])
+        p3_attn_map = self.SpatialGate(p3_attn_map)
+
+        output = []
+        for px in x:
+            output.append(px * p3_attn_map)
+        return torch.cat(output, dim=1)
 
 
 class AttnMap(nn.Module):
