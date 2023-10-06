@@ -17,70 +17,6 @@ from utils.general import non_max_suppression, make_divisible, scale_coords, inc
 from utils.plots import color_list, plot_one_box
 from utils.torch_utils import time_synchronized
 
-##### yolov4 ###
-
-class SPPCSP(nn.Module):
-    # CSP SPP https://github.com/WongKinYiu/CrossStagePartialNetworks
-    def __init__(self, c1, c2, n=1, shortcut=False, g=1, e=0.5, k=(5, 9, 13)):
-        super(SPPCSP, self).__init__()
-        c_ = int(2 * c2 * e)  # hidden channels
-        self.cv1 = Conv(c1, c_, 1, 1)
-        self.cv2 = nn.Conv2d(c1, c_, 1, 1, bias=False)
-        self.cv3 = Conv(c_, c_, 3, 1)
-        self.cv4 = Conv(c_, c_, 1, 1)
-        self.m = nn.ModuleList([nn.MaxPool2d(kernel_size=x, stride=1, padding=x // 2) for x in k])
-        self.cv5 = Conv(4 * c_, c_, 1, 1)
-        self.cv6 = Conv(c_, c_, 3, 1)
-        self.bn = nn.BatchNorm2d(2 * c_)
-        # self.act = Mish()
-        self.act = nn.Mish()
-        self.cv7 = Conv(2 * c_, c2, 1, 1)
-
-    def forward(self, x):
-        x1 = self.cv4(self.cv3(self.cv1(x)))
-        y1 = self.cv6(self.cv5(torch.cat([x1] + [m(x1) for m in self.m], 1)))
-        y2 = self.cv2(x)
-        return self.cv7(self.act(self.bn(torch.cat((y1, y2), dim=1))))
-
-class BottleneckCSP(nn.Module):
-    # CSP Bottleneck https://github.com/WongKinYiu/CrossStagePartialNetworks
-    def __init__(self, c1, c2, n=1, shortcut=True, g=1, e=0.5):  # ch_in, ch_out, number, shortcut, groups, expansion
-        super(BottleneckCSP, self).__init__()
-        c_ = int(c2 * e)  # hidden channels
-        self.cv1 = Conv(c1, c_, 1, 1)
-        self.cv2 = nn.Conv2d(c1, c_, 1, 1, bias=False)
-        self.cv3 = nn.Conv2d(c_, c_, 1, 1, bias=False)
-        self.cv4 = Conv(2 * c_, c2, 1, 1)
-        self.bn = nn.BatchNorm2d(2 * c_)  # applied to cat(cv2, cv3)
-        # self.act = Mish()
-        self.act = nn.Mish()
-        self.m = nn.Sequential(*[Bottleneck(c_, c_, shortcut, g, e=1.0) for _ in range(n)])
-
-    def forward(self, x):
-        y1 = self.cv3(self.m(self.cv1(x)))
-        y2 = self.cv2(x)
-        return self.cv4(self.act(self.bn(torch.cat((y1, y2), dim=1))))
-
-
-class BottleneckCSP2(nn.Module):
-    # CSP Bottleneck https://github.com/WongKinYiu/CrossStagePartialNetworks
-    def __init__(self, c1, c2, n=1, shortcut=False, g=1, e=0.5):  # ch_in, ch_out, number, shortcut, groups, expansion
-        super(BottleneckCSP2, self).__init__()
-        c_ = int(c2)  # hidden channels
-        self.cv1 = Conv(c1, c_, 1, 1)
-        self.cv2 = nn.Conv2d(c_, c_, 1, 1, bias=False)
-        self.cv3 = Conv(2 * c_, c2, 1, 1)
-        self.bn = nn.BatchNorm2d(2 * c_) 
-        # self.act = Mish()
-        self.act = nn.Mish()
-        self.m = nn.Sequential(*[Bottleneck(c_, c_, shortcut, g, e=1.0) for _ in range(n)])
-
-    def forward(self, x):
-        x1 = self.cv1(x)
-        y1 = self.m(x1)
-        y2 = self.cv2(x1)
-        return self.cv3(self.act(self.bn(torch.cat((y1, y2), dim=1))))
-
 # sequence feature
 class Unsqueeze(nn.Module):
     def __init__(self, dimension=2):
@@ -89,15 +25,6 @@ class Unsqueeze(nn.Module):
 
     def forward(self, x):
         return x.unsqueeze(self.d)
-
-
-class Squeeze(nn.Module):
-    def __init__(self, dimension=2):
-        super(Squeeze, self).__init__()
-        self.d = dimension
-
-    def forward(self, x):
-        return x.squeeze(self.d)
 
 
 # sequence feature
@@ -121,32 +48,8 @@ class Conv3D(nn.Module):
         return y
 
 
-class Conv3DNP(nn.Module):
-    # create sequence feature
-    def __init__(self, in_c=256, out_c=256, k=1, s=1):
-        super(Conv3DNP, self).__init__()
-        self.conv3d = nn.Conv3d(in_c, out_c, kernel_size=(k, k, k), stride=(s, s, s), padding=k // 2)
-        self.batch3d = nn.BatchNorm3d(out_c, eps=0.001)
-        self.act = nn.SiLU()
-
-    def forward(self, x):
-        y = self.conv3d(x)
-        y = self.batch3d(y)
-        y = self.act(y)
-        return y
-
-
-def logsumexp_2d(tensor):
-    tensor_flatten = tensor.view(tensor.size(0), tensor.size(1), -1)
-    s, _ = torch.max(tensor_flatten, dim=2, keepdim=True)
-    outputs = s + (tensor_flatten - s).exp().sum(dim=2, keepdim=True).log()
-    return outputs
-
-
 class Flatten(nn.Module):
-    # Use after nn.AdaptiveAvgPool2d(1) to remove last 2 dimensions
-    @staticmethod
-    def forward(x):
+    def forward(self, x):
         return x.view(x.size(0), -1)
 
 
@@ -157,42 +60,36 @@ class ChannelGate(nn.Module):
         self.mlp = nn.Sequential(
             Flatten(),
             nn.Linear(gate_channels, gate_channels // reduction_ratio),
-            nn.SiLU(),
-            nn.Linear(gate_channels // reduction_ratio, gate_channels)
+            nn.ReLU(),
+            nn.Linear(gate_channels // reduction_ratio, gate_channels),
+            nn.Sigmoid()
             )
-        self.avg_pool = nn.AdaptiveAvgPool2d(1)
-        self.max_pool = nn.AdaptiveMaxPool2d(1)
-        self.sigmoid = nn.Sigmoid()
+        self.avgpool = nn.AdaptiveAvgPool2d((1, 1))
+        self.maxpool = nn.AdaptiveMaxPool2d((1, 1))
 
     def forward(self, x):
-        avg_pool = self.avg_pool(x)
-        channel_att_sum = self.mlp(avg_pool)
-        max_pool = self.max_pool(x)
-        channel_att_sum += self.mlp(max_pool)
-        # scale = torch.sigmoid(channel_att_sum).unsqueeze(2).unsqueeze(3).expand_as(x)
-        scale = self.sigmoid(channel_att_sum).unsqueeze(2).unsqueeze(3).expand_as(x)
-        return x * scale
+        x_avg_pool = self.mlp(self.avgpool(x))
+        x_max_pool = self.mlp(self.maxpool(x))
+        attention = x_avg_pool + x_max_pool
+        attention = attention.unsqueeze(2).unsqueeze(3).expand_as(x)
+        return x * attention
 
 
 class SpatialGate(nn.Module):
     def __init__(self):
         super(SpatialGate, self).__init__()
-        kernel_size = 7
-        # self.compress = ChannelPool()
-        self.spatial = Conv(2, 1, k=kernel_size, p=(kernel_size-1) // 2, g=1, act=False)
-        self.sigmoid = nn.Sigmoid()
+        self.conv = nn.Sequential(
+            nn.Conv2d(2, 1, 7, padding=3),
+            nn.BatchNorm2d(1),
+            nn.Sigmoid()
+        )
 
     def forward(self, x):
-        # x_compress = self.compress(x)
-        # x_compress = torch.cat( (torch.max(x, 1)[0].unsqueeze(1),
-        #                          torch.mean(x, 1).unsqueeze(1)), dim=1 )
-        avg_out = torch.mean(x, dim=1, keepdim=True)
-        max_out, _ = torch.max(x, dim=1, keepdim=True)
-        x_compress = torch.cat([max_out, avg_out], dim=1)
-        x_out = self.spatial(x_compress)
-        scale = self.sigmoid(x_out) # broadcasting
-        # return x * scale
-        return scale
+        x_avg_pool = torch.mean(x, 1).unsqueeze(1)
+        x_max_pool = torch.max(x, 1)[0].unsqueeze(1)
+        attention = torch.cat((x_avg_pool, x_max_pool), dim=1)
+        # return x * attention
+        return self.conv(attention)
 
 
 class CBAM(nn.Module):
@@ -209,78 +106,6 @@ class CBAM(nn.Module):
         for px in x:
             output.append(px * p3_attn_map)
         return torch.cat(output, dim=1)
-
-
-class AttnMap(nn.Module):
-    def forward(self, x):
-        features = x[0]
-        attnmaps = x[1]
-        return features * attnmaps
-
-
-class ChannelAttention(nn.Module):
-    def __init__(self, in_planes, ratio=16):
-        super(ChannelAttention, self).__init__()
-        self.avg_pool = nn.AdaptiveAvgPool2d(1)
-        self.max_pool = nn.AdaptiveMaxPool2d(1)
-
-        self.fc = nn.Sequential(nn.Conv2d(in_planes, in_planes // ratio, 1, bias=False),
-                                nn.SiLU(),
-                                nn.Conv2d(in_planes // ratio, in_planes, 1, bias=False))
-        self.sigmoid = nn.Sigmoid()
-
-    def forward(self, x):
-        avg_out = self.fc(self.avg_pool(x))
-        max_out = self.fc(self.max_pool(x))
-        out = avg_out + max_out
-        return self.sigmoid(out)
-
-
-class SpatialAttention(nn.Module):
-    def __init__(self, kernel_size=7):
-        super(SpatialAttention, self).__init__()
-
-        self.conv1 = nn.Conv2d(2, 1, kernel_size, padding=kernel_size // 2, bias=False)
-        self.sigmoid = nn.Sigmoid()
-
-    def forward(self, x):
-        avg_out = torch.mean(x, dim=1, keepdim=True)
-        max_out, _ = torch.max(x, dim=1, keepdim=True)
-        x = torch.cat([avg_out, max_out], dim=1)
-        x = self.conv1(x)
-        return self.sigmoid(x)
-
-
-class ApplyAttention(nn.Module):
-    def __init__(self, num_feat):
-        super(ApplyAttention, self).__init__()
-        self.conv = nn.Conv2d(num_feat, num_feat, kernel_size=3, padding=1, bias=True)
-        # self.catt = ChannelAttention(num_feat)
-        # self.satt = SpatialAttention()
-
-
-    def forward(self, x):
-        y = self.conv(x[0])
-        y1 = y * x[1]
-        y2 = y * x[2]
-
-        return y1 + y2
-
-
-class RBAM(nn.Module):
-    def __init__(self, num_feat=64):
-        super(RBAM, self).__init__()
-        self.conv = nn.Conv2d(num_feat, num_feat, kernel_size=3, padding=1, bias=True)
-        self.catt = ChannelAttention(num_feat)
-        self.satt = SpatialAttention()
-
-
-    def forward(self, x):
-        y = self.conv(x)
-        y = self.catt(y) * y
-        y = self.satt(y) * y
-
-        return y + x
 
 
 ##### basic ####
