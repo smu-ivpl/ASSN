@@ -80,7 +80,7 @@ class SpatialGate(nn.Module):
         super(SpatialGate, self).__init__()
         self.conv = nn.Sequential(
             nn.Conv2d(2, 1, 7, padding=3),
-            # nn.BatchNorm2d(1),
+            nn.BatchNorm2d(1),
             nn.Sigmoid()
         )
 
