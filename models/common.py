@@ -103,10 +103,9 @@ class CBAM(nn.Module):
         p3_attn_map = self.ChannelGate(x[0])
         p3_attn_map = self.SpatialGate(p3_attn_map)
 
-        output = []
-        for px in x:
-            output.append(px * p3_attn_map)
-        return torch.cat(output, dim=1)
+        # expand_attn = [p3_attn_map for _ in x]
+        # expand_attn = torch.cat(expand_attn, dim=0)
+        return torch.cat(x, dim=1) * p3_attn_map
 
 
 ##### basic ####
