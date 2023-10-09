@@ -80,7 +80,7 @@ class SpatialGate(nn.Module):
         super(SpatialGate, self).__init__()
         self.conv = nn.Sequential(
             nn.Conv2d(2, 1, 7, padding=3),
-            nn.BatchNorm2d(1),
+            # nn.BatchNorm2d(1),
             nn.Sigmoid()
         )
 
@@ -88,8 +88,9 @@ class SpatialGate(nn.Module):
         x_avg_pool = torch.mean(x, 1).unsqueeze(1)
         x_max_pool = torch.max(x, 1)[0].unsqueeze(1)
         attention = torch.cat((x_avg_pool, x_max_pool), dim=1)
+        attention = self.conv(attention)
         # return x * attention
-        return self.conv(attention)
+        return attention
 
 
 class CBAM(nn.Module):
