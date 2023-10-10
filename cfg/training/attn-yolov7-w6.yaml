@@ -186,8 +186,9 @@ head:
    [ [ -1, -2, -3, -4, -5, -6 ], 1, Concat, [ 1 ] ],
    [ -1, 1, Conv, [ 256, 1, 1 ] ], # 137
 
-    # concatenate s2 and P3
-   [ [ -1, 114 ], 1, Concat, [ 1 ] ],
+    # merge s2 and P3
+#   [ [ -1, 114 ], 1, Concat, [ 1 ] ],
+   [ [ -1, 114 ], 1, Shortcut, []],
     # <<< scale sequence (s2) feature --------------------------------------------
 
    [[ -1, 115, 116, 117, 118, 119, 120, 121 ], 1, IAuxDetect, [nc, anchors]],   # Detect(P3, P4, P5, P6)
