@@ -60,7 +60,8 @@ class ChannelGate(nn.Module):
         self.mlp = nn.Sequential(
             Flatten(),
             nn.Linear(gate_channels, gate_channels // reduction_ratio),
-            nn.ReLU(),
+            # nn.ReLU(),
+            nn.SiLU(),
             nn.Linear(gate_channels // reduction_ratio, gate_channels),
             nn.Sigmoid()
             )
