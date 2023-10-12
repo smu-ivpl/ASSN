@@ -160,13 +160,13 @@ head:
    [122, 1, nn.Upsample, [ None, 4, 'nearest' ]],  # 124, p5 resize
 
    # attention with P3
-   [ 118, 1, CBAM, [ 320 ] ],               # 125
-   [ [ 118, 125 ], 1, AttnMap, [] ],   # apply attention to p3
-   [ [ 123, 125 ], 1, AttnMap, [] ],   # apply attention to p4
-   [ [ 124, 125 ], 1, AttnMap, [] ],   # apply attention to p5
+   [ [118, 123, 124], 1, CBAM, [ 320 ] ],               # 125
+#   [ [ 118, 125 ], 1, AttnMap, [] ],   # apply attention to p3
+#   [ [ 123, 125 ], 1, AttnMap, [] ],   # apply attention to p4
+#   [ [ 124, 125 ], 1, AttnMap, [] ],   # apply attention to p5
 
    # general view
-   [[ -1, -2, -3 ], 1, Concat, [ 1 ]],
+#   [[ -1, -2, -3 ], 1, Concat, [ 1 ]],
    [ -1, 1, Conv, [ 320, 1, 1 ] ],
    [ -2, 1, Conv, [ 320, 1, 1 ] ],
    [ -1, 1, Conv, [ 160, 3, 1 ] ],
@@ -177,7 +177,8 @@ head:
    [ -1, 1, Conv, [ 320, 1, 1 ] ], # 137
 
    # concatenate s2 and P3
-   [ [ -1, 118 ], 1, Concat, [1]], # 138, concatenation
+#   [ [ -1, 118 ], 1, Concat, [1]], # 138, concatenation
+   [ [ -1, 118 ], 1, Shortcut, []],
    # <<< scale sequence (s2) feature --------------------------------------------
 
    [ [ -1, 119, 120 ], 1, IDetect, [nc, anchors]],   # Detect(P3, P4, P5)

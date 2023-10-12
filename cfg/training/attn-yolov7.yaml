@@ -161,7 +161,8 @@ head:
     [ -1, 1, Conv, [ 256, 1, 1 ] ], # 137
 
     # concatenate s2 and P3
-    [ [ -1, 102 ], 1, Concat, [ 1 ] ], # 138, concatenation
+#    [ [ -1, 102 ], 1, Concat, [ 1 ] ], # 138, concatenation
+   [ [ -1, 102 ], 1, Shortcut, []],
     # <<< scale sequence (s2) feature --------------------------------------------
 
    [ [ -1, 103, 104 ], 1, IDetect, [nc, anchors]],   # Detect(P3, P4, P5)
