@@ -1,6 +1,0 @@
-conda create -n yolo python==3.8.10
-conda activate yolo
-pip install torch==1.12.1+cu113 torchvision==0.13.1+cu113 torchaudio==0.12.1+cu113 -f https://download.pytorch.org/whl/cu113/torch_stable.html
-pip install scipy==1.8.0 protobuf==3.20 tqdm thop tensorboard tensorboardX requests matplotlib numpy opencv-python Pillow PyYAML pandas seaborn pycocotools ipython psutil
-
-OMP_NUM_THREADS=2 torchrun --nproc_per_node 4 train.py --workers 8 --device 0,1,2,3 --sync-bn --batch-size 112 --data data/coco.yaml --img 640 640 --cfg cfg/training/attn-yolov7.yaml --weights weights/yolov7.pt --name attn-yolov7 --hyp data/hyp.scratch.p5.yaml
