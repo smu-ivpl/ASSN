@@ -4,7 +4,7 @@ This repository contains the research results of ASSN, which improved the perfor
 
 ----------------------------
 ## Performance
-Validation Set (5k images)
+### Validation Set (5k images)
 | Model | Test Size | AP | AP<sub>50</sub> | AP<sub>75</sub> | AP<sub>S</sub> | AP<sub>M</sub> | AP<sub>L</sub> |
 | :-- | :-: | :-: | :-: | :-: | :-: | :-: | :-: |
 | YOLOv7 | 640 | 51.2% | 69.7% | 55.5% | 35.2% | 56.0% | 66.7% |
@@ -13,8 +13,7 @@ Validation Set (5k images)
 | [**ASSN + YOLOv7**](https://drive.google.com/file/d/1oWQaeN-RIJINg4onkJafDyoPVq9UohcG/view?usp=drive_link) | 640 | **51.5%** | **70.0%** | **56.1%** | **35.7%** | **56.3%** | **65.8%** |
 | [**ASSN + YOLOv7-X**](https://drive.google.com/file/d/1KzQpplxyk3vRcP_K1CNOc0LNaVcazBfD/view?usp=drive_link) | 640 | **53.5%** | **71.6%** | **58.2%** | **36.7%** | **58.3%** | **69.7%** |
 | [**ASSN + YOLOv7-W6**](https://drive.google.com/file/d/1a0i74WuVH5ZM9AHLDLhwq6zFUNX89RHG/view?usp=drive_link) | 1280 | **55.0%** | **72.7%** | **60.1%** | **40.0%** | **59.5%** | **68.2%** |
-
-Test Set (test-dev2017, 20k images)
+### Test Set (test-dev2017, 20k images)
 | Model | Test Size | AP | AP<sub>50</sub> | AP<sub>75</sub> | AP<sub>S</sub> | AP<sub>M</sub> | AP<sub>L</sub> |
 | :-- | :-: | :-: | :-: | :-: | :-: | :-: | :-: |
 | YOLOv7 | 640 | 51.4% | 69.7% | 55.9% | 31.8% | 55.5% | 65.0% |
@@ -23,7 +22,12 @@ Test Set (test-dev2017, 20k images)
 | [**ASSN + YOLOv7**](https://drive.google.com/file/d/1oWQaeN-RIJINg4onkJafDyoPVq9UohcG/view?usp=drive_link) | 640 | **51.9%** | **70.3%** | **56.5%** | **32.6%** | **55.7%** | **65.4%** |
 | [**ASSN + YOLOv7-X**](https://drive.google.com/file/d/1KzQpplxyk3vRcP_K1CNOc0LNaVcazBfD/view?usp=drive_link) | 640 | **53.5%** | **71.5%** | **58.2%** | **34.3%** | **57.5%** | **67.4%** |
 | [**ASSN + YOLOv7-W6**](https://drive.google.com/file/d/1a0i74WuVH5ZM9AHLDLhwq6zFUNX89RHG/view?usp=drive_link) | 1280 | **55.2%** | **72.9%** | **60.5%** | **37.9%** | **58.8%** | **67.5%** |
-
+### Testing Environment
+|||
+| :-: | :-: |
+| CPU | Intel® Core™ i9-9900K CPU @ 3.60GHz × 16 |
+| GPU | NVIDIA GeForce GTX 1080 Ti (11GB) |
+| OS | Ubuntu 22.04.3 LTS |
 ----------------------------
 ## ASSN Architecture
 ![architecture](figure/architecture.png)
