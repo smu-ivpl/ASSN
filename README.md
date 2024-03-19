@@ -12,9 +12,9 @@ This repository was created based on the official repository source of [YOLOv7](
 | YOLOv7 | 640 | 51.2% | 69.7% | 55.5% | 35.2% | 56.0% | 66.7% |
 | YOLOv7-X | 640 | 52.9% | 71.1% | 57.5% | 36.9% | 57.7% | 68.6% |
 | YOLOv7-W6 | 1280 | 54.6% | 72.3% | 59.5% | 40.1% | 59.0% | 68.6% |
-| [**ASSN + YOLOv7**](https://drive.google.com/file/d/1oWQaeN-RIJINg4onkJafDyoPVq9UohcG/view?usp=drive_link) | 640 | **51.5%** | **70.0%** | **56.1%** | **35.7%** | **56.3%** | **65.8%** |
-| [**ASSN + YOLOv7-X**](https://drive.google.com/file/d/1KzQpplxyk3vRcP_K1CNOc0LNaVcazBfD/view?usp=drive_link) | 640 | **53.5%** | **71.6%** | **58.2%** | **36.7%** | **58.3%** | **69.7%** |
-| [**ASSN + YOLOv7-W6**](https://drive.google.com/file/d/1a0i74WuVH5ZM9AHLDLhwq6zFUNX89RHG/view?usp=drive_link) | 1280 | **55.0%** | **72.7%** | **60.1%** | **40.0%** | **59.5%** | **68.2%** |
+| [**ASSN + YOLOv7**](https://drive.google.com/file/d/1oWQaeN-RIJINg4onkJafDyoPVq9UohcG/view?usp=drive_link) | 640 | **51.5%** | **70.0%** | **56.1%** | **35.7%** | **56.3%** | 65.8% |
+| [**ASSN + YOLOv7-X**](https://drive.google.com/file/d/1KzQpplxyk3vRcP_K1CNOc0LNaVcazBfD/view?usp=drive_link) | 640 | **53.5%** | **71.6%** | **58.2%** | 36.7% | 58.3% | 69.7% |
+| [**ASSN + YOLOv7-W6**](https://drive.google.com/file/d/1a0i74WuVH5ZM9AHLDLhwq6zFUNX89RHG/view?usp=drive_link) | 1280 | **55.0%** | **72.7%** | **60.1%** | 40.0% | **59.5%** | 68.2% |
 ### Test Set (test-dev2017, 20k images)
 | Model | Test Size | AP | AP<sub>50</sub> | AP<sub>75</sub> | AP<sub>S</sub> | AP<sub>M</sub> | AP<sub>L</sub> |
 | :-- | :-: | :-: | :-: | :-: | :-: | :-: | :-: |
