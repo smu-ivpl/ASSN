@@ -934,8 +934,8 @@ def parse_model(d, ch, verbose=True):  # model_dict, input_channels(3)
         elif m is Shortcut:
             c2 = ch[f[0]]
         elif m is ConvP3:
-            c1, c2 = ch[f], args[0]
-            args = [c1, c2, *args[1:]]
+            c1, c2 = ch[f], int(ch[args[0]] * args[1])
+            args = [c1, c2, *args[2:]]
         else:
             c2 = ch[f]
 

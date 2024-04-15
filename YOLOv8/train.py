@@ -1,10 +1,30 @@
 from ultralytics import YOLO
+import argparse
 
-# Load a model
-model = YOLO('/home/ywlee/dev/ASSN/YOLOv8/ultralytics/cfg/models/v8/yolov8n-assn.yaml')  # build a new model from YAML
-model.load('/home/ywlee/weights/yolov8n.pt')
-# model = YOLO('/home/ywlee/weights/yolov8n.pt')  # load a pretrained model (recommended for training)
-# model = YOLO('yolov8n.yaml').load('yolov8n.pt')  # build from YAML and transfer weights
+if __name__ == "__main__":
+  parser = argparse.ArgumentParser()
+  parser.add_argument('--weights', type=str, default=None)
+  parser.add_argument('--yaml', type=str, default='yolov8n-assn.yaml')
+  parser.add_argument('--data', type=str, default='coco.yaml')
+  parser.add_argument('--device', type=list, default=[0,1,2,3])
+  parser.add_argument('--epochs', type=int, default=300)
+  parser.add_argument('--imgsz', type=int, default=640)
+  parser.add_argument('--batch', type=int, default=64)
+  parser.add_argument('--resume', action='store_true', default=False)
+  args = parser.parse_args()
 
-# Train the model
-results = model.train(data='coco128.yaml', epochs=100, imgsz=640)
+  # Load a model,
+  # when using CLI: export PYTHONPATH=$PYTHONPATH:/home/ywlee/dev/YOLOv8/
+  model = YOLO(args.yaml)  # build a new model from YAML
+  if args.weights is not None:
+    model.load(args.weights)
+
+  # Train the model
+  results = model.train(data=args.data,
+                        epochs=args.epochs,
+                        imgsz=args.imgsz,
+                        batch=args.batch,
+                        device=args.device,
+                        name=args.yaml.split('.')[0],
+                        resume=args.resume)
+  print(results)

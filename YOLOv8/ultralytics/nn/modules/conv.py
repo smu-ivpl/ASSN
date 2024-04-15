@@ -28,6 +28,34 @@ __all__ = (
 )
 
 
+class Flatten(nn.Module):
+    def forward(self, x):
+        return x.view(x.size(0), -1)
+
+
+class ChannelAttentionP3(nn.Module):
+    """Channel-attention module https://github.com/open-mmlab/mmdetection/tree/v3.0.0rc1/configs/rtmdet."""
+
+    def __init__(self, channels: int, reduction_ratio=16) -> None:
+        """Initializes the class and sets the basic configurations and instance variables required."""
+        super().__init__()
+        self.avgpool = nn.AdaptiveAvgPool2d(1)
+        self.maxpool = nn.AdaptiveMaxPool2d(1)
+        self.mlp = nn.Sequential(
+            Flatten(),
+            nn.Linear(channels, channels // reduction_ratio),
+            nn.SiLU(),
+            nn.Linear(channels // reduction_ratio, channels),
+            nn.Sigmoid()
+        )
+
+    def forward(self, x: torch.Tensor) -> torch.Tensor:
+        """Applies forward pass using activation on convolutions of the input, optionally using batch normalization."""
+        xpool = self.mlp(self.avgpool(x)) + self.mlp(self.maxpool(x))
+        xattn = xpool.unsqueeze(2).unsqueeze(3).expand_as(x)
+        return x * xattn
+
+
 class SpatialAttentionP3(nn.Module):
     """Spatial-attention module."""
 
@@ -37,11 +65,12 @@ class SpatialAttentionP3(nn.Module):
         assert kernel_size in {3, 7}, "kernel size must be 3 or 7"
         padding = 3 if kernel_size == 7 else 1
         self.cv1 = nn.Conv2d(2, 1, kernel_size, padding=padding, bias=False)
+        self.bn1 = nn.BatchNorm2d(1)
         self.act = nn.Sigmoid()
 
     def forward(self, x):
         """Apply channel and spatial attention on input for feature recalibration."""
-        return self.act(self.cv1(torch.cat([torch.mean(x, 1, keepdim=True), torch.max(x, 1, keepdim=True)[0]], 1)))
+        return self.act(self.bn1(self.cv1(torch.cat([torch.mean(x, 1, keepdim=True), torch.max(x, 1, keepdim=True)[0]], 1))))
 
 
 class CBAMP3(nn.Module):
@@ -50,17 +79,17 @@ class CBAMP3(nn.Module):
     def __init__(self, c1, kernel_size=7):
         """Initialize CBAM with given input channel (c1) and kernel size."""
         super().__init__()
-        self.channel_attention = ChannelAttention(c1)
+        self.channel_attention = ChannelAttentionP3(c1)
         self.spatial_attention = SpatialAttentionP3(kernel_size)
 
     def forward(self, x):
         """Applies the forward pass through C1 module."""
-        p3_cam = self.channel_attention(x[0])
-        p3_sam = self.spatial_attention(p3_cam)
-        p3 = p3_cam * p3_sam
-        p4 = x[1] * p3_sam
-        p5 = x[2] * p3_sam
-        return torch.cat([p3, p4, p5], dim=1)
+        n = len(x)
+        p3c = self.channel_attention(x[0])
+        p3s = self.spatial_attention(p3c)
+        p3 = p3c * p3s
+        pn = [x[i] * p3s for i in range(1, n)]
+        return torch.cat([p3, *pn], dim=1)
 
 
 class Shortcut(nn.Module):

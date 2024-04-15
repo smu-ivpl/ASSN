@@ -777,16 +777,12 @@ def parse_model(d, ch):  # model_dict, input_channels(3)
                      ST2CSPA, ST2CSPB, ST2CSPC]:
                 args.insert(2, n)  # number of repeats
                 n = 1
-        elif m is Conv3D:
-            c2 = args[1]
         elif m is nn.BatchNorm2d:
             args = [ch[f]]
         elif m is Concat:
             c2 = sum([ch[x] for x in f])
         elif m is Chuncat:
             c2 = sum([ch[x] for x in f])
-        elif m is Shortcut:
-            c2 = ch[f[0]]
         elif m is Foldcut:
             c2 = ch[f] // 2
         elif m in [Detect, IDetect, IAuxDetect, IBin, IKeypoint]:
@@ -799,8 +795,14 @@ def parse_model(d, ch):  # model_dict, input_channels(3)
             c2 = ch[f] * args[0] ** 2
         elif m is Expand:
             c2 = ch[f] // args[0] ** 2
+        elif m is Conv3D:
+            c2 = args[1]
         elif m is CBAM:
+            args = [ch[f[0]]]
             c2 = sum([ch[x] for x in f])
+        elif m is Shortcut:
+            assert ch[f[0]] == ch[f[1]]
+            c2 = ch[f[0]]
         else:
             c2 = ch[f]
 
