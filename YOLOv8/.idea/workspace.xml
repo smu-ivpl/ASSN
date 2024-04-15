@@ -1,0 +1,304 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="b2ed210a-cf26-44a3-9c9f-1bcb9ad4f6a3" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/../YOLOv7/cfg/baseline/r50-csp.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../YOLOv7/cfg/baseline/x50-csp.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../YOLOv7/cfg/baseline/yolor-csp-x.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../YOLOv7/cfg/baseline/yolor-csp.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../YOLOv7/cfg/baseline/yolor-d6.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../YOLOv7/cfg/baseline/yolor-e6.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../YOLOv7/cfg/baseline/yolor-p6.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../YOLOv7/cfg/baseline/yolor-w6.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../YOLOv7/cfg/baseline/yolov3-spp.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../YOLOv7/cfg/baseline/yolov3.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../YOLOv7/cfg/baseline/yolov4-csp.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../YOLOv7/cfg/deploy/attn-yolov7-w6.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../YOLOv7/cfg/deploy/attn-yolov7.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../YOLOv7/cfg/deploy/yolov7-d6.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../YOLOv7/cfg/deploy/yolov7-e6.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../YOLOv7/cfg/deploy/yolov7-e6e.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../YOLOv7/cfg/deploy/yolov7-tiny-silu.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../YOLOv7/cfg/deploy/yolov7-tiny.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../YOLOv7/cfg/deploy/yolov7-w6.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../YOLOv7/cfg/deploy/yolov7.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../YOLOv7/cfg/deploy/yolov7x.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../YOLOv7/cfg/training/assn-yolov7-w6.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../YOLOv7/cfg/training/assn-yolov7.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../YOLOv7/cfg/training/assn-yolov7x.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../YOLOv7/cfg/training/ss-yolov7-w6.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../YOLOv7/cfg/training/ss-yolov7.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../YOLOv7/cfg/training/ss-yolov7x.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../YOLOv7/cfg/training/yolov4-p5-ss.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../YOLOv7/cfg/training/yolov4-p5.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../YOLOv7/cfg/training/yolov7-d6.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../YOLOv7/cfg/training/yolov7-e6.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../YOLOv7/cfg/training/yolov7-e6e.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../YOLOv7/cfg/training/yolov7-tiny.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../YOLOv7/cfg/training/yolov7-w6.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../YOLOv7/cfg/training/yolov7.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../YOLOv7/cfg/training/yolov7x-ss-ee-attn3d.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../YOLOv7/cfg/training/yolov7x-ss-ee.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../YOLOv7/cfg/training/yolov7x.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../YOLOv7/data/coco.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../YOLOv7/data/hyp.scratch.custom.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../YOLOv7/data/hyp.scratch.p5.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../YOLOv7/data/hyp.scratch.p6.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../YOLOv7/data/hyp.scratch.tiny.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../YOLOv7/deploy/triton-inference-server/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../YOLOv7/deploy/triton-inference-server/boundingbox.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../YOLOv7/deploy/triton-inference-server/client.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../YOLOv7/deploy/triton-inference-server/data/dog.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../YOLOv7/deploy/triton-inference-server/data/dog_result.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../YOLOv7/deploy/triton-inference-server/labels.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../YOLOv7/deploy/triton-inference-server/processing.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../YOLOv7/deploy/triton-inference-server/render.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../YOLOv7/detect.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../YOLOv7/export.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../YOLOv7/hubconf.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../YOLOv7/inference/images/bus.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../YOLOv7/inference/images/horses.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../YOLOv7/inference/images/image1.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../YOLOv7/inference/images/image2.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../YOLOv7/inference/images/image3.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../YOLOv7/inference/images/zidane.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../YOLOv7/models/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../YOLOv7/models/common.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../YOLOv7/models/experimental.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../YOLOv7/models/yolo.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../YOLOv7/paper/yolov7.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../YOLOv7/scripts/get_coco.sh" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../YOLOv7/test.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../YOLOv7/tools/YOLOv7-Dynamic-Batch-ONNXRUNTIME.ipynb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../YOLOv7/tools/YOLOv7-Dynamic-Batch-TENSORRT.ipynb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../YOLOv7/tools/YOLOv7CoreML.ipynb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../YOLOv7/tools/YOLOv7onnx.ipynb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../YOLOv7/tools/YOLOv7trt.ipynb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../YOLOv7/tools/compare_YOLOv7_vs_YOLOv5m6.ipynb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../YOLOv7/tools/compare_YOLOv7_vs_YOLOv5m6_half.ipynb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../YOLOv7/tools/compare_YOLOv7_vs_YOLOv5s6.ipynb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../YOLOv7/tools/compare_YOLOv7e6_vs_YOLOv5x6.ipynb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../YOLOv7/tools/compare_YOLOv7e6_vs_YOLOv5x6_half.ipynb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../YOLOv7/tools/instance.ipynb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../YOLOv7/tools/keypoint.ipynb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../YOLOv7/tools/reparameterization.ipynb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../YOLOv7/tools/visualization.ipynb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../YOLOv7/train_aux.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../YOLOv7/utils/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../YOLOv7/utils/activations.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../YOLOv7/utils/add_nms.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../YOLOv7/utils/autoanchor.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../YOLOv7/utils/aws/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../YOLOv7/utils/aws/mime.sh" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../YOLOv7/utils/aws/resume.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../YOLOv7/utils/aws/userdata.sh" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../YOLOv7/utils/datasets.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../YOLOv7/utils/general.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../YOLOv7/utils/google_app_engine/Dockerfile" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../YOLOv7/utils/google_app_engine/additional_requirements.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../YOLOv7/utils/google_app_engine/app.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../YOLOv7/utils/google_utils.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../YOLOv7/utils/loss.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../YOLOv7/utils/metrics.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../YOLOv7/utils/plots.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../YOLOv7/utils/torch_utils.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../YOLOv7/utils/wandb_logging/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../YOLOv7/utils/wandb_logging/log_dataset.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../YOLOv7/utils/wandb_logging/wandb_utils.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../cfg/baseline/r50-csp.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../cfg/baseline/x50-csp.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../cfg/baseline/yolor-csp-x.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../cfg/baseline/yolor-csp.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../cfg/baseline/yolor-d6.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../cfg/baseline/yolor-e6.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../cfg/baseline/yolor-p6.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../cfg/baseline/yolor-w6.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../cfg/baseline/yolov3-spp.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../cfg/baseline/yolov3.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../cfg/baseline/yolov4-csp.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../cfg/deploy/attn-yolov7-w6.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../cfg/deploy/attn-yolov7.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../cfg/deploy/yolov7-d6.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../cfg/deploy/yolov7-e6.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../cfg/deploy/yolov7-e6e.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../cfg/deploy/yolov7-tiny-silu.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../cfg/deploy/yolov7-tiny.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../cfg/deploy/yolov7-w6.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../cfg/deploy/yolov7.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../cfg/deploy/yolov7x.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../cfg/training/assn-yolov7-w6.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../cfg/training/assn-yolov7.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../cfg/training/assn-yolov7x.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../cfg/training/ss-yolov7-w6.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../cfg/training/ss-yolov7.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../cfg/training/ss-yolov7x.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../cfg/training/yolov4-p5-ss.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../cfg/training/yolov4-p5.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../cfg/training/yolov7-d6.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../cfg/training/yolov7-e6.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../cfg/training/yolov7-e6e.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../cfg/training/yolov7-tiny.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../cfg/training/yolov7-w6.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../cfg/training/yolov7.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../cfg/training/yolov7x-ss-ee-attn3d.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../cfg/training/yolov7x-ss-ee.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../cfg/training/yolov7x.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../data/coco.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../data/hyp.scratch.custom.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../data/hyp.scratch.p5.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../data/hyp.scratch.p6.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../data/hyp.scratch.tiny.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../deploy/triton-inference-server/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../deploy/triton-inference-server/boundingbox.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../deploy/triton-inference-server/client.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../deploy/triton-inference-server/data/dog.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../deploy/triton-inference-server/data/dog_result.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../deploy/triton-inference-server/labels.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../deploy/triton-inference-server/processing.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../deploy/triton-inference-server/render.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../detect.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../export.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../hubconf.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../inference/images/bus.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../inference/images/horses.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../inference/images/image1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../inference/images/image2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../inference/images/image3.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../inference/images/zidane.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../models/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../models/common.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../models/experimental.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../models/yolo.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../paper/yolov7.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../scripts/get_coco.sh" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../tools/YOLOv7-Dynamic-Batch-ONNXRUNTIME.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../tools/YOLOv7-Dynamic-Batch-TENSORRT.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../tools/YOLOv7CoreML.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../tools/YOLOv7onnx.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../tools/YOLOv7trt.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../tools/compare_YOLOv7_vs_YOLOv5m6.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../tools/compare_YOLOv7_vs_YOLOv5m6_half.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../tools/compare_YOLOv7_vs_YOLOv5s6.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../tools/compare_YOLOv7e6_vs_YOLOv5x6.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../tools/compare_YOLOv7e6_vs_YOLOv5x6_half.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../tools/instance.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../tools/keypoint.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../tools/reparameterization.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../tools/visualization.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../train.py" beforeDir="false" afterPath="$PROJECT_DIR$/../YOLOv7/train.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../train_aux.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../utils/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../utils/activations.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../utils/add_nms.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../utils/autoanchor.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../utils/aws/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../utils/aws/mime.sh" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../utils/aws/resume.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../utils/aws/userdata.sh" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../utils/datasets.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../utils/general.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../utils/google_app_engine/Dockerfile" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../utils/google_app_engine/additional_requirements.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../utils/google_app_engine/app.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../utils/google_utils.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../utils/loss.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../utils/metrics.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../utils/plots.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../utils/torch_utils.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../utils/wandb_logging/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../utils/wandb_logging/log_dataset.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../utils/wandb_logging/wandb_utils.py" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 7
+}</component>
+  <component name="ProjectId" id="2ezG3dXKfL6jYb8FWhhzW4c4F2d" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Python.train.executor&quot;: &quot;Debug&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/ywlee/dev/ASSN/YOLOv8&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="RunManager">
+    <configuration name="train" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="YOLOv8" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/train.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.train" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-js-predefined-1d06a55b98c1-74d2a5396914-JavaScript-PY-241.14494.241" />
+        <option value="bundled-python-sdk-0509580d9d50-28c9f5db9ffe-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-241.14494.241" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="b2ed210a-cf26-44a3-9c9f-1bcb9ad4f6a3" name="Changes" comment="" />
+      <created>1712899794399</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1712899794399</updated>
+      <workItem from="1712899795403" duration="6701000" />
+      <workItem from="1713141605325" duration="4400000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/YOLOv8$train.coverage" NAME="train Coverage Results" MODIFIED="1713146904625" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+  </component>
+</project>
