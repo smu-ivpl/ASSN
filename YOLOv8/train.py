@@ -1,5 +1,6 @@
 from ultralytics import YOLO
 import argparse
+import torch
 
 if __name__ == "__main__":
   parser = argparse.ArgumentParser()
@@ -13,6 +14,8 @@ if __name__ == "__main__":
   parser.add_argument('--resume', action='store_true', default=False)
   args = parser.parse_args()
 
+  torch.backends.cudnn.deterministic = False
+  torch.use_deterministic_algorithms(False)
   # Load a model,
   # when using CLI: export PYTHONPATH=$PYTHONPATH:/home/ywlee/dev/YOLOv8/
   model = YOLO(args.yaml)  # build a new model from YAML
@@ -25,6 +28,5 @@ if __name__ == "__main__":
                         imgsz=args.imgsz,
                         batch=args.batch,
                         device=args.device,
-                        name=args.yaml.split('.')[0],
-                        resume=args.resume)
+                        name=args.yaml.split('.')[0])
   print(results)

@@ -101,13 +101,14 @@ class CBAM(nn.Module):
         self.SpatialGate = SpatialGate()
 
     def forward(self, x):
-        n = len(x)
         p3c = self.ChannelGate(x[0])
         p3s = self.SpatialGate(p3c)
 
-        p3 = p3c * p3s
-        pn = [x[i] * p3s for i in range(1, n)]
-        return torch.cat([p3, *pn], dim=1)
+        # TODO: bug fixing...
+        # n = len(x)
+        # p3 = p3c * p3s
+        # pn = [x[i] * p3s for i in range(1, n)]
+        return torch.cat(x, dim=1) * p3s
 
 
 ##### basic ####
