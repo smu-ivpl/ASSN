@@ -1,8 +1,8 @@
 # ASSN: Attention-based Scale Sequence Network
 
-This repository contains the research results of ASSN, which improved the performance of YOLOv7 based on [ssFPN](https://github.com/smu-ivpl/ssFPN), a previous study conducted on YOLOv4 and YOLOR.
+This repository contains the research results of ASSN, which improved the performance of YOLOv7 and YOLOv8 based on [ssFPN](https://github.com/smu-ivpl/ssFPN), a previous study conducted on YOLOv4 and YOLOR.
 
-This repository was created based on the official repository source of [YOLOv7](https://github.com/WongKinYiu/yolov7).
+This repository was created based on the official repository source of [YOLOv7](https://github.com/WongKinYiu/yolov7) and [YOLOv8](https://github.com/ultralytics/ultralytics).
 
 ----------------------------
 ## Performance (MS-COCO)
