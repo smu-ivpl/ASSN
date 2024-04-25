@@ -18,7 +18,7 @@ This repository was created based on the official repository source of [YOLOv7](
 | [**YOLOv7-X + ASSN**](https://drive.google.com/file/d/1KzQpplxyk3vRcP_K1CNOc0LNaVcazBfD/view?usp=drive_link) | 640 | **53.5%** | **71.6%** | **58.2%** | 36.7% | 58.3% | 69.7% |
 | [**YOLOv7-W6 + ASSN**](https://drive.google.com/file/d/1a0i74WuVH5ZM9AHLDLhwq6zFUNX89RHG/view?usp=drive_link) | 1280 | **55.0%** | **72.7%** | **60.1%** | 40.0% | **59.5%** | 68.2% |
 | [**YOLOv8n + ASSN**] | 640 | 37.4% | **53.2%** | **40.5%** | **20.5%** | **41.6%** | 51.6% |
-| [**YOLOv8n + ASSN**] | 640 | **45.0%** | **62.3%** | **49.1%** | **27.2%** | **50.3%** | 59.7% |
+| [**YOLOv8s + ASSN**] | 640 | **45.0%** | **62.3%** | **49.1%** | **27.2%** | **50.3%** | 59.7% |
 ### Test Set (test-dev2017, 20k images)
 | Model | Test Size | AP | AP<sub>50</sub> | AP<sub>75</sub> | AP<sub>S</sub> | AP<sub>M</sub> | AP<sub>L</sub> |
 | :-- | :-: | :-: | :-: | :-: | :-: | :-: | :-: |
