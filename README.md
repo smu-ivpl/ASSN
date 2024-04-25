@@ -14,11 +14,11 @@ This repository was created based on the official repository source of [YOLOv7](
 | YOLOv7-W6 | 1280 | 54.6% | 72.3% | 59.5% | 40.1% | 59.0% | 68.6% |
 | YOLOv8n | 640 | 37.4% | 52.9% | 40.3% | 18.6% | 41.0% | 53.5% |
 | YOLOv8s | 640 | 44.9% | 62.1% | 48.3% | 25.9% | 49.9% | 61.0% |
-| [**YOLOv7 + ASSN**](https://drive.google.com/file/d/1oWQaeN-RIJINg4onkJafDyoPVq9UohcG/view?usp=drive_link) | 640 | **51.5%** | **70.0%** | **56.1%** | **35.7%** | **56.3%** | 65.8% |
-| [**YOLOv7-X + ASSN**](https://drive.google.com/file/d/1KzQpplxyk3vRcP_K1CNOc0LNaVcazBfD/view?usp=drive_link) | 640 | **53.5%** | **71.6%** | **58.2%** | 36.7% | 58.3% | 69.7% |
-| [**YOLOv7-W6 + ASSN**](https://drive.google.com/file/d/1a0i74WuVH5ZM9AHLDLhwq6zFUNX89RHG/view?usp=drive_link) | 1280 | **55.0%** | **72.7%** | **60.1%** | 40.0% | **59.5%** | 68.2% |
-| [**YOLOv8n + ASSN**] | 640 | 37.4% | **53.2%** | **40.5%** | **20.5%** | **41.6%** | 51.6% |
-| [**YOLOv8s + ASSN**] | 640 | **45.0%** | **62.3%** | **49.1%** | **27.2%** | **50.3%** | 59.7% |
+| [**ASSN + YOLOv7**](https://drive.google.com/file/d/1oWQaeN-RIJINg4onkJafDyoPVq9UohcG/view?usp=drive_link) | 640 | **51.5%** | **70.0%** | **56.1%** | **35.7%** | **56.3%** | 65.8% |
+| [**ASSN + YOLOv7-X**](https://drive.google.com/file/d/1KzQpplxyk3vRcP_K1CNOc0LNaVcazBfD/view?usp=drive_link) | 640 | **53.5%** | **71.6%** | **58.2%** | 36.7% | 58.3% | 69.7% |
+| [**ASSN + YOLOv7-W6**](https://drive.google.com/file/d/1a0i74WuVH5ZM9AHLDLhwq6zFUNX89RHG/view?usp=drive_link) | 1280 | **55.0%** | **72.7%** | **60.1%** | 40.0% | **59.5%** | 68.2% |
+| [**ASSN + YOLOv8n**](https://drive.google.com/file/d/1Ec6nRszQgeT528FzGoCnn8DOmlCwdoJ-/view?usp=sharing) | 640 | 37.4% | **53.2%** | **40.5%** | **20.5%** | **41.6%** | 51.6% |
+| [**ASSN + YOLOv8s**](https://drive.google.com/file/d/1-AKOf4rUgRXSv20uvbrvEuj3HWHRqcKq/view?usp=sharing) | 640 | **45.0%** | **62.3%** | **49.1%** | **27.2%** | **50.3%** | 59.7% |
 ### Test Set (test-dev2017, 20k images)
 | Model | Test Size | AP | AP<sub>50</sub> | AP<sub>75</sub> | AP<sub>S</sub> | AP<sub>M</sub> | AP<sub>L</sub> |
 | :-- | :-: | :-: | :-: | :-: | :-: | :-: | :-: |
