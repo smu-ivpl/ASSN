@@ -28,7 +28,7 @@ This repository was created based on the official repository source of [YOLOv7](
 | [**ASSN + YOLOv7**](https://drive.google.com/file/d/1oWQaeN-RIJINg4onkJafDyoPVq9UohcG/view?usp=drive_link) | 640 | **51.9%** | **70.3%** | **56.5%** | **32.6%** | **55.7%** | **65.4%** |
 | [**ASSN + YOLOv7-X**](https://drive.google.com/file/d/1KzQpplxyk3vRcP_K1CNOc0LNaVcazBfD/view?usp=drive_link) | 640 | **53.5%** | **71.5%** | **58.2%** | **34.3%** | **57.5%** | **67.4%** |
 | [**ASSN + YOLOv7-W6**](https://drive.google.com/file/d/1a0i74WuVH5ZM9AHLDLhwq6zFUNX89RHG/view?usp=drive_link) | 1280 | **55.2%** | **72.9%** | **60.5%** | **37.9%** | **58.8%** | **67.5%** |
-* Test Set (test-dev2017, 20k images) have an issue on experimental server (https://codalab.lisn.upsaclay.fr/competitions/7384) on YOLOv8, so we cannot get any experimental results for YOLOv8 currently.
+* Test Set (test-dev2017, 20k images) have an issue on experimental server (https://codalab.lisn.upsaclay.fr/competitions/7384) with YOLOv8, so we cannot get any experimental results with this set for YOLOv8 currently.
 ### Testing Environment
 |||
 | :-: | :-: |
